@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/21 16:52:48 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:31:44 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ typedef struct s_mlx
 	int		fractal;
 }			t_mlx;
 
-typedef struct s_mbrot
+typedef struct s_mandel
 {
-	float	z_real;
-	float	z_imaginary;
-	float	c_real;
-	float	c_imaginary;
-}			t_mbrot;
+	int		max_iteration;
+	double	z_real;
+	double	c_real;
+	double	max_real;
+	double	min_real;
+	double	z_imaginary;
+	double	c_imaginary;
+	double	max_imaginary;
+	double	min_imaginary;
+}			t_mandel;
 
 typedef struct s_julia
 {
@@ -53,5 +58,8 @@ typedef struct s_julia
 
 void	error(const char *str);
 void	events(t_mlx *mlx);
+void	draw(t_mlx *mlx);
+void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
+void    mandelbrot_set(t_mlx *mlx);
 
 #endif
