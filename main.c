@@ -6,11 +6,27 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/21 13:49:24 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:07:28 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	check_fractal_type(t_mlx *mlx, char **argv)
+{
+	if (!ft_strcmp(argv[1], "Julia") || !ft_strcmp(argv[1], "julia"))
+		mlx->fractal = 1;
+	else if (!ft_strcmp(argv[1], "Mandelbrot")
+		|| !ft_strcmp(argv[1], "mandelbrot"))
+		mlx->fractal = 2;
+	else if (!ft_strcmp(argv[1], "Fractal") || !ft_strcmp(argv[1], "fractal"))
+		mlx->fractal = 3;
+	else
+	{
+		ft_putendl("Invalid fractal type.");
+		exit(1);
+	}
+}
 
 void	error(const char *str)
 {
@@ -27,15 +43,16 @@ int	main(int argc, char **argv)
 		ft_putendl("Usage: ./fractol [name of fractal type]");
 		ft_putendl("-->> Julia");
 		ft_putendl("-->> Mandelbrot");
+		ft_putendl("-->> Fractal");
 		return (1);
 	}
+	check_fractal_type(&mlx, argv);
 	mlx.connection = mlx_init();
 	if (!mlx.connection)
 		error("error");
-	mlx.window = mlx_new_window(mlx.connection, 1200, 1200, "Fract'ol");
+	mlx.window = mlx_new_window(mlx.connection, WIDTH, HEIGHT, "Fract'ol");
 	if (!mlx.window)
 		error("error");
-	printf("%s\n", argv[1]);
 	events(&mlx);
 	mlx_loop(mlx.connection);
 	return (0);
