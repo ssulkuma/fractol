@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:14:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/22 16:13:33 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:53:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,13 @@
 
 static int	define_julia(t_julia *julia)
 {
-	double	temp;
-	int		iteration;
+	double	real_range;
+	double	imaginary_range;
 
-	iteration = 0;
-	julia->z_real = 0;
-	julia->z_imaginary = 0;
-	while ((iteration < julia->max_iteration) && (julia->z_real
-			* julia->z_real + julia->z_imaginary * julia->z_imaginary < 4))
-	{
-		temp = julia->z_real * julia->z_real - julia->z_imaginary
-			* julia->z_imaginary + julia->c_real;
-		julia->z_imaginary = 2 * julia->z_real * julia->z_imaginary
-			+ julia->c_imaginary;
-		julia->z_real = temp;
-		iteration++;
-	}
-	return (iteration);
+	real_range = julia->max_real - julia->min_real;
+	imaginary_range = julia->max_imaginary - julia->min_imaginary;
+
 }
-
 static void	julia_struct_intel(t_julia *julia)
 {
 	julia->max_iteration = 50;
@@ -42,6 +30,7 @@ static void	julia_struct_intel(t_julia *julia)
 	julia->max_imaginary = 2;
 	julia->min_real = -2;
 	julia->min_imaginary = -2;
+	julia->depth = 100;
 }
 
 void	julia_set(t_mlx *mlx)
@@ -52,17 +41,13 @@ void	julia_set(t_mlx *mlx)
 	t_julia	julia;
 
 	julia_struct_intel(&julia);
-	x = 0;
-	while (x < WIDTH)
+	x = WIDTH / 2 - HEIGHT / 2;
+	while (x < WIDTH / 2 + HEIGHT / 2)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			iteration = define_julia(&julia);
-			if (iteration == julia.max_iteration)
-				draw_pixel_to_image(mlx, x, y, 0x000000);
-			else
-				draw_pixel_to_image(mlx, x, y, mlx->color * iteration);
+			define_julia(&julia);
 			y++;
 		}
 		x++;
