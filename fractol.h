@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/21 19:31:44 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:36:19 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_mlx
 	int		line_len;
 	int		endian;
 	int		fractal;
+	int		color;
 }			t_mlx;
 
 typedef struct s_mandel
