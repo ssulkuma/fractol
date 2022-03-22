@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/21 18:01:27 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:57:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int argc, char **argv)
 	mlx.window = mlx_new_window(mlx.connection, WIDTH, HEIGHT, "Fract'ol");
 	if (!mlx.window)
 		error("error");
+	mlx.color = 0xFF0000;
 	draw(&mlx);
 	events(&mlx);
 	mlx_loop(mlx.connection);

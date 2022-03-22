@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/21 17:59:38 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:09:20 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	draw(t_mlx *mlx)
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
-	//if (mlx->fractal == 1)
-		//julia_set(mlx);
+	if (mlx->fractal == 1)
+		julia_set(mlx);
 	if (mlx->fractal == 2)
 		mandelbrot_set(mlx);
 	//if (mlx->fractal == 3)

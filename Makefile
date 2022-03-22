@@ -6,16 +6,16 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/03/21 18:01:51 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/03/22 16:09:50 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-SRC_FILES = main.c events.c draw.c mandelbrot.c
+SRC_FILES = main.c events.c draw.c mandelbrot.c julia.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 HEADERS = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3 -fsanitize=address
 FRAMEWORK = -framework OpenGL -framework AppKit
 GCH = fractol.h.gch
 
