@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/23 11:56:59 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:26:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,15 @@ typedef struct s_mandel
 typedef struct s_julia
 {
 	int		max_iteration;
-	int		depth;
+	double	depth;
 	double	z_real;
 	double	c_real;
+	double	max_real;
+	double	min_real;
 	double	z_imaginary;
 	double	c_imaginary;
+	double	max_imaginary;
+	double	min_imaginary;
 }			t_julia;
 
 void	error(const char *str);
