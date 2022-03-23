@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:56:27 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/22 12:58:17 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:14:14 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	complex_number(t_mandel *mandel, int x, int y)
 
 static void	mandel_struct_intel(t_mandel *mandel)
 {
-	mandel->max_iteration = 100;
+	mandel->max_iteration = 50;
 	mandel->max_real = 1;
 	mandel->max_imaginary = 1;
 	mandel->min_real = -2;
@@ -61,6 +61,7 @@ void	mandelbrot_set(t_mlx *mlx)
 	t_mandel	mandel;
 
 	mandel_struct_intel(&mandel);
+	mlx->color = 0xFF00FF;
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -72,7 +73,7 @@ void	mandelbrot_set(t_mlx *mlx)
 			if (iteration == mandel.max_iteration)
 				draw_pixel_to_image(mlx, x, y, 0x000000);
 			else
-				draw_pixel_to_image(mlx, x, y, mlx->color * iteration);
+				draw_pixel_to_image(mlx, x, y, 500 * iteration / 50);
 			y++;
 		}
 		x++;

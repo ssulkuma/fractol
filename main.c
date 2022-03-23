@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/22 12:57:09 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:23:43 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_fractal_type(t_mlx *mlx, char **argv)
 	else if (!ft_strcmp(argv[1], "Mandelbrot")
 		|| !ft_strcmp(argv[1], "mandelbrot"))
 		mlx->fractal = 2;
-	else if (!ft_strcmp(argv[1], "Fractal") || !ft_strcmp(argv[1], "fractal"))
+	else if (!ft_strcmp(argv[1], "Newton") || !ft_strcmp(argv[1], "newton"))
 		mlx->fractal = 3;
 	else
 	{
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 		ft_putendl("Usage: ./fractol [name of fractal type]");
 		ft_putendl("-->> Julia");
 		ft_putendl("-->> Mandelbrot");
-		ft_putendl("-->> Fractal");
+		ft_putendl("-->> Newton");
 		return (1);
 	}
 	check_fractal_type(&mlx, argv);

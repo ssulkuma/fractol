@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:14:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/23 14:43:53 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:22:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	julia_struct_intel(t_julia *julia)
 	julia->max_imaginary = 1;
 	julia->min_real = -1;
 	julia->min_imaginary = -1;
-	julia->c_real = -0.8;
-	julia->c_imaginary = 0.156;
+	julia->c_real = 0.285;
+	julia->c_imaginary = 0.01;
 	julia->depth = julia->min_real - julia->max_real;
 }
 

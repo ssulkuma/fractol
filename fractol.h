@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/23 14:26:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:22:51 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,19 @@ typedef struct s_julia
 	double	min_imaginary;
 }			t_julia;
 
+typedef struct s_newton
+{
+	int		max_iteration;
+	double	z_real;
+	double	z_imaginary;
+}			t_newton;
+
 void	error(const char *str);
 void	events(t_mlx *mlx);
 void	draw(t_mlx *mlx);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	mandelbrot_set(t_mlx *mlx);
 void	julia_set(t_mlx *mlx);
+void	newton_set(t_mlx *mlx);
 
 #endif
