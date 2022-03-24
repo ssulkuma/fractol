@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:56:27 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/22 15:14:14 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:40:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	define_mandelbrot(t_mandel *mandel)
 	return (iteration);
 }
 
-static void	complex_number(t_mandel *mandel, int x, int y)
+static void	complex_number_mandel(t_mandel *mandel, int x, int y)
 {
 	double	real_range;
 	double	imaginary_range;
@@ -68,7 +68,7 @@ void	mandelbrot_set(t_mlx *mlx)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			complex_number(&mandel, x, y);
+			complex_number_mandel(&mandel, x, y);
 			iteration = define_mandelbrot(&mandel);
 			if (iteration == mandel.max_iteration)
 				draw_pixel_to_image(mlx, x, y, 0x000000);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/23 16:22:51 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:53:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct s_mlx
 	int		color;
 }			t_mlx;
 
+typedef struct s_complex
+{
+	double	real;
+	double	imag;
+}			t_complex;
+
 typedef struct s_mandel
 {
 	int		max_iteration;
@@ -70,16 +76,34 @@ typedef struct s_julia
 typedef struct s_newton
 {
 	int		max_iteration;
+	double	max_real;
+	double	max_imaginary;
+	double	min_real;
+	double	min_imaginary;
 	double	z_real;
 	double	z_imaginary;
+	double	tolerance;
+	double	root_1_real;
+	double	root_2_real;
+	double	root_3_real;
+	double	root_1_imaginary;
+	double	root_2_imaginary;
+	double	root_3_imaginary;
 }			t_newton;
 
-void	error(const char *str);
-void	events(t_mlx *mlx);
-void	draw(t_mlx *mlx);
-void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
-void	mandelbrot_set(t_mlx *mlx);
-void	julia_set(t_mlx *mlx);
-void	newton_set(t_mlx *mlx);
+void		error(const char *str);
+void		events(t_mlx *mlx);
+void		draw(t_mlx *mlx);
+void		draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
+void		mandelbrot_set(t_mlx *mlx);
+void		julia_set(t_mlx *mlx);
+void		newton_set(t_mlx *mlx);
+t_complex	complex_number(double real, double imag);
+t_complex   complex_add(t_complex cn1, t_complex cn2);
+t_complex   complex_sub(t_complex cn1, t_complex cn2);
+t_complex   complex_multi(t_complex cn1, t_complex cn2);
+t_complex   complex_div(t_complex cn1, t_complex cn2);
+t_complex   complex_abs(t_complex cn);
+t_complex   complex_pow(t_complex cn1, t_complex cn2);
 
 #endif
