@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_julia.c                                          :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 17:04:15 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:14:22 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	draw_julia(t_julia *julia, t_complex z, t_complex c, t_mlx *mlx)
+static void	fractal(t_fractal *julia, t_complex z, t_complex c, t_mlx *mlx)
 {
 	int	x;
 	int	y;
@@ -32,7 +32,7 @@ static void	draw_julia(t_julia *julia, t_complex z, t_complex c, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, 0x000000);
 }
 
-static void	julia_struct_intel(t_julia *julia)
+static void	julia_struct_intel(t_fractal *julia)
 {
 	julia->max_iteration = 150;
 	julia->max_real = 0.5;
@@ -45,7 +45,7 @@ void	julia_set(t_mlx *mlx)
 {
 	t_complex	z;
 	t_complex	c;
-	t_julia		julia;
+	t_fractal	julia;
 
 	julia_struct_intel(&julia);
 	julia.x = 0;
@@ -60,7 +60,7 @@ void	julia_set(t_mlx *mlx)
 				* (julia.y - HEIGHT / 2) / HEIGHT;
 			c.real = -0.8;
 			c.imag = 0.156;
-			draw_julia(&julia, z, c, mlx);
+			fractal(&julia, z, c, mlx);
 			julia.y++;
 		}
 		julia.x++;

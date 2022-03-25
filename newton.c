@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 15:03:20 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:14:05 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static	t_complex	newton_deri(t_complex z)
 	return (complex_mul(complex_mul(z, z), three));
 }
 
-static void	newton1(t_newton *newton, t_complex z, t_complex *root, t_mlx *mlx)
+static void	fractal(t_fractal *newton, t_complex z, t_complex *root, t_mlx *mlx)
 {
 	int	x;
 	int	y;
@@ -55,7 +55,7 @@ static void	newton1(t_newton *newton, t_complex z, t_complex *root, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, 255 - iteration * 15);
 }
 
-void	newton_struct_intel(t_complex *root, t_newton *newton)
+static void	newton_struct_intel(t_complex *root, t_fractal *newton)
 {
 	root[0].real = 1;
 	root[0].imag = 0;
@@ -75,7 +75,7 @@ void	newton_set(t_mlx *mlx)
 {
 	t_complex	z;
 	t_complex	root[3];
-	t_newton	newton;
+	t_fractal	newton;
 
 	newton.x = 0;
 	newton_struct_intel(root, &newton);
@@ -88,7 +88,7 @@ void	newton_set(t_mlx *mlx)
 					/ HEIGHT) * newton.x;
 			z.imag = newton.min_imag + ((newton.max_imag - newton.min_imag)
 					/ HEIGHT) * newton.y;
-			newton1(&newton, z, root, mlx);
+			fractal(&newton, z, root, mlx);
 			newton.y++;
 		}
 		newton.x++;

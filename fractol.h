@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 16:56:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:08:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,7 @@ typedef struct s_complex
 	double	imag;
 }			t_complex;
 
-typedef struct s_mandel
-{
-	int		x;
-	int		y;
-	int		max_iteration;
-	double	max_real;
-	double	max_imag;
-	double	min_real;
-	double	min_imag;
-}			t_mandel;
-
-typedef struct s_julia
-{
-	int		x;
-	int		y;
-	int		max_iteration;
-	double	max_real;
-	double	max_imag;
-	double	min_real;
-	double	min_imag;
-}			t_julia;
-
-typedef struct s_newton
+typedef struct s_fractal
 {
 	int		x;
 	int		y;
@@ -78,7 +56,7 @@ typedef struct s_newton
 	double	min_real;
 	double	min_imag;
 	double	tolerance;
-}			t_newton;
+}			t_fractal;
 
 void		error(const char *str);
 void		events(t_mlx *mlx);

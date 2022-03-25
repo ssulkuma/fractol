@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_mandelbrot.c                                     :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 16:10:13 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:14:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	mandelbrot(t_mandel *mandel, t_complex z, t_complex c, t_mlx *mlx)
+static void	fractal(t_fractal *mandel, t_complex z, t_complex c, t_mlx *mlx)
 {
 	int	x;
 	int	y;
@@ -32,7 +32,7 @@ static void	mandelbrot(t_mandel *mandel, t_complex z, t_complex c, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, 500 * iteration / 50);
 }
 
-static void	mandel_struct_intel(t_mandel *mandel)
+static void	mandel_struct_intel(t_fractal *mandel)
 {
 	mandel->max_iteration = 100;
 	mandel->max_real = 1;
@@ -45,7 +45,7 @@ void	mandelbrot_set(t_mlx *mlx)
 {
 	t_complex	z;
 	t_complex	c;
-	t_mandel	mandel;
+	t_fractal	mandel;
 
 	mandel_struct_intel(&mandel);
 	mandel.x = 0;
@@ -60,7 +60,7 @@ void	mandelbrot_set(t_mlx *mlx)
 				+ mandel.min_real;
 			c.imag = (mandel.max_imag - mandel.min_imag) / HEIGHT * mandel.y
 				+ mandel.min_imag;
-			mandelbrot(&mandel, z, c, mlx);
+			fractal(&mandel, z, c, mlx);
 			mandel.y++;
 		}
 		mandel.x++;
