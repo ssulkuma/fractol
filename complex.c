@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:10:08 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 12:25:26 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:04:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ t_complex	complex_div(t_complex a, t_complex b)
 {
 	t_complex	result;
 
-	result.real = (a.real * b.real + a.imag * b.imag) / (b.real * b.real + b.imag * b.imag);
-	result.imag = (-a.real * b.imag + a.imag * b.real) / (b.real * b.real + b.imag * b.imag);
+	result.real = (a.real * b.real + a.imag * b.imag)
+		/ (b.real * b.real + b.imag * b.imag);
+	result.imag = (-a.real * b.imag + a.imag * b.real)
+		/ (b.real * b.real + b.imag * b.imag);
 	return (result);
 }

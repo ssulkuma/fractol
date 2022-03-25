@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:30:12 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 13:57:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:05:25 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_complex	complex_pow(t_complex base, double power)
 	index = 0;
 	result.real = 1;
 	result.imag = 0;
-	while(index < power)
+	while (index < power)
 	{
 		result = complex_mul(result, base);
 		index++;

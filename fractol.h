@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 13:51:53 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:59:48 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ typedef struct s_julia
 
 typedef struct s_newton
 {
-	int		iteration;
+	int		x;
+	int		y;
 	int		max_iteration;
 	double	max_real;
-	double	max_imaginary;
+	double	max_imag;
 	double	min_real;
-	double	min_imaginary;
+	double	min_imag;
 	double	tolerance;
 }			t_newton;
 
