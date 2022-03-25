@@ -6,100 +6,86 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/24 17:58:02 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:24:32 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-static void	newton_function(t_newton *newton)
-{
-	double	temp;
 
-	temp = pow(newton->z_real, 3) - 1;
-	newton->z_imaginary = pow(newton->z_imaginary, 0);
-	newton->z_real = temp;
+static t_complex	newton_function(t_complex z)
+{
+	t_complex	one;
+
+	one.real = 1;
+	one.imag = 0;
+	return (complex_sub(complex_pow(z, 3), one));
 }
 
-static void	newton_derivative(t_newton *newton)
+static	t_complex	newton_derivative(t_complex z)
 {
-	double	temp;
+	t_complex	three;
 
-	temp = (newton->z_real * newton->z_real - newton->z_imaginary * newton->z_imaginary) * 3;
-	newton->z_imaginary = (newton->z_real * newton->z_imaginary + newton->z_imaginary * newton->z_real) * 3;
-	newton->z_real = temp;
+	three.real = 3;
+	three.imag = 0;
+	return (complex_mul(complex_mul(z, z), three));
 }
-*/
-static int	define_newton(t_newton *newton, int x, int y)
+
+static int	define_newton(t_newton *newton, t_complex z, t_complex *root, int x, int y, t_mlx *mlx)
 {
-	int		iteration;
-	double	real_range;
-	double	imaginary_range;
-	double	temp;
+	int			iteration;
 
 	iteration = 0;
-	real_range = (newton->max_real - newton->min_real) / WIDTH;
-	imaginary_range = (newton->max_imaginary - newton->min_imaginary) / HEIGHT;
-	newton->z_real = newton->min_real + real_range * x;
-	newton->z_imaginary = newton->min_imaginary + imaginary_range * y;
-	//printf("%f\n", newton->z_real);
-	//printf("%f\n\n", newton->z_imaginary);
-	while (iteration < newton->max_iteration)
+	while (complex_abs(complex_sub(z, root[0])) > newton->tolerance
+		&& complex_abs(complex_sub(z, root[1])) > newton->tolerance
+		&& complex_abs(complex_sub(z, root[2])) > newton->tolerance
+		&& iteration < newton->max_iteration)
 	{
-		if (fabs((pow(newton->z_real, 3) - 1)) < newton->tolerance || abs((pow(newton->z_imaginary, 0) < newton->tolerance)))
-			break ;
-		temp = (newton->z_real - (pow(newton->z_real, 3) - 1)) / ((newton->z_real * newton->z_real - newton->z_imaginary * newton->z_imaginary) * 3);
-		newton->z_imaginary = (newton->z_imaginary - pow(newton->z_imaginary, 0)) / (newton->z_real * newton->z_imaginary + newton->z_imaginary * newton->z_real) * 3;
-		newton->z_real = temp;
-		//printf("%f\n", newton->z_real);
-		//printf("%f\n\n", newton->z_imaginary);
+		z = complex_sub(z, complex_div(newton_function(z), newton_derivative(z)));
 		iteration++;
 	}
+	if (complex_abs(complex_sub(z, root[0])) < newton->tolerance)
+		draw_pixel_to_image(mlx, x, y, (255 - iteration * 15) << 16);
+	else if (complex_abs(complex_sub(z, root[1])) < newton->tolerance)
+		draw_pixel_to_image(mlx, x, y, (255 - iteration * 15) << 8);
+	else if (complex_abs(complex_sub(z, root[2])) < newton->tolerance)
+		draw_pixel_to_image(mlx, x, y, 255 - iteration * 15);
 	return (iteration);
 }
 
-static void	newton_struct_intel(t_newton *newton)
+void	newton_struct_intel(t_complex *root, t_newton *newton)
 {
-	newton->tolerance = 0.000001;
+	root[0].real = 1;
+	root[0].imag = 0;
+	root[1].real = -0.5;
+	root[1].imag = sqrt(3) / 2;
+	root[2].real = -0.5;
+	root[2].imag = -sqrt(3) / 2;
 	newton->max_iteration = 100;
-	newton->root_1_real = 1;
-	newton->root_2_real = -0.5;
-	newton->root_3_real = -0.5;
-	newton->root_1_imaginary = 0;
-	newton->root_2_imaginary = sqrt(3) / 2;
-	newton->root_3_imaginary = -sqrt(3) / 2;
 	newton->max_real = 1;
 	newton->max_imaginary = 1;
-	newton->min_real = -2.5;
+	newton->min_real = -1;
 	newton->min_imaginary = -1;
+	newton->tolerance = 0.000001;
 }
 
 void	newton_set(t_mlx *mlx)
 {
 	int			x;
 	int			y;
-	int			iteration;
+	t_complex	z;
+	t_complex	root[3];
 	t_newton	newton;
 
-	newton_struct_intel(&newton);
 	x = 0;
+	newton_struct_intel(root, &newton);
 	while (x < WIDTH)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			iteration = define_newton(&newton, x, y);
-			//printf("%d\n", iteration);
-			if (fabs(newton.z_real - newton.root_1_real) < newton.tolerance)
-				draw_pixel_to_image(mlx, x, y, 0x00FF00 * iteration);
-			else if (fabs(newton.z_imaginary - newton.root_1_imaginary) < newton.tolerance)
-				draw_pixel_to_image(mlx, x, y, 0x00FF00 * iteration);
-			else if (fabs(newton.z_real - newton.root_2_real) < newton.tolerance)
-				draw_pixel_to_image(mlx, x, y, 0xFF0000 * iteration);
-			else if (fabs(newton.z_imaginary - newton.root_2_imaginary) < newton.tolerance)
-				draw_pixel_to_image(mlx, x, y, 0xFF0000 * iteration);
-			else
-				draw_pixel_to_image(mlx, x, y, 0x0000FF * iteration);
+			z.real = newton.min_real + ((newton.max_real - newton.min_real) / HEIGHT) * x;
+			z.imag = newton.min_imaginary + ((newton.max_imaginary - newton.min_imaginary) / HEIGHT) * y;
+			newton.iteration = define_newton(&newton, z, root, x, y, mlx);
 			y++;
 		}
 		x++;

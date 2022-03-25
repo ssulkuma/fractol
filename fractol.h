@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/24 17:53:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:51:53 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <math.h>
 
 # define WIDTH 1500
-# define HEIGHT 1200
+# define HEIGHT 800
 
 # define ESC_KEY 53
 
@@ -75,20 +75,13 @@ typedef struct s_julia
 
 typedef struct s_newton
 {
+	int		iteration;
 	int		max_iteration;
 	double	max_real;
 	double	max_imaginary;
 	double	min_real;
 	double	min_imaginary;
-	double	z_real;
-	double	z_imaginary;
 	double	tolerance;
-	double	root_1_real;
-	double	root_2_real;
-	double	root_3_real;
-	double	root_1_imaginary;
-	double	root_2_imaginary;
-	double	root_3_imaginary;
 }			t_newton;
 
 void		error(const char *str);
@@ -98,12 +91,11 @@ void		draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void		mandelbrot_set(t_mlx *mlx);
 void		julia_set(t_mlx *mlx);
 void		newton_set(t_mlx *mlx);
-t_complex	complex_number(double real, double imag);
-t_complex   complex_add(t_complex cn1, t_complex cn2);
-t_complex   complex_sub(t_complex cn1, t_complex cn2);
-t_complex   complex_multi(t_complex cn1, t_complex cn2);
-t_complex   complex_div(t_complex cn1, t_complex cn2);
-t_complex   complex_abs(t_complex cn);
-t_complex   complex_pow(t_complex cn1, t_complex cn2);
+double		complex_abs(t_complex a);
+t_complex	complex_add(t_complex a, t_complex b);
+t_complex	complex_sub(t_complex a, t_complex b);
+t_complex	complex_mul(t_complex a, t_complex b);
+t_complex	complex_div(t_complex a, t_complex b);
+t_complex	complex_pow(t_complex base, double power);
 
 #endif
