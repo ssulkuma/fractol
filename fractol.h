@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 16:04:53 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:56:08 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,13 @@ typedef struct s_mandel
 
 typedef struct s_julia
 {
+	int		x;
+	int		y;
 	int		max_iteration;
-	double	depth;
-	double	z_real;
-	double	c_real;
 	double	max_real;
+	double	max_imag;
 	double	min_real;
-	double	z_imaginary;
-	double	c_imaginary;
-	double	max_imaginary;
-	double	min_imaginary;
+	double	min_imag;
 }			t_julia;
 
 typedef struct s_newton

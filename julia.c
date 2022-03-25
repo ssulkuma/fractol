@@ -1,72 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   c_julia.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 15:14:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/23 15:22:52 by ssulkuma         ###   ########.fr       */
+/*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
+/*   Updated: 2022/03/25 17:04:15 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	define_julia(t_julia *julia, int x, int y)
+static void	draw_julia(t_julia *julia, t_complex z, t_complex c, t_mlx *mlx)
 {
-	int		iteration;
-	double	temp;
+	int	x;
+	int	y;
+	int	iteration;
 
-	julia->z_real = 2 * julia->depth * (x - WIDTH / 2) / HEIGHT;
-	julia->z_imaginary = 2 * julia->depth * (y - HEIGHT / 2) / HEIGHT;
+	x = julia->x;
+	y = julia->y;
 	iteration = 0;
-	while ((iteration < julia->max_iteration) && (julia->z_real
-			* julia->z_real + julia->z_imaginary * julia->z_imaginary < 4))
+	while (iteration < julia->max_iteration && complex_abs(z) < 4)
 	{
-		temp = julia->z_real * julia->z_real - julia->z_imaginary
-			* julia->z_imaginary + julia->c_real;
-		julia->z_imaginary = 2 * julia->z_real * julia->z_imaginary
-			+ julia->c_imaginary;
-		julia->z_real = temp;
+		z = complex_add(complex_mul(z, z), c);
 		iteration++;
 	}
-	return (iteration);
+	if (iteration != julia->max_iteration)
+		draw_pixel_to_image(mlx, x, y, iteration * 15);
+	else
+		draw_pixel_to_image(mlx, x, y, 0x000000);
 }
 
 static void	julia_struct_intel(t_julia *julia)
 {
-	julia->max_iteration = 100;
-	julia->max_real = 1;
-	julia->max_imaginary = 1;
-	julia->min_real = -1;
-	julia->min_imaginary = -1;
-	julia->c_real = 0.285;
-	julia->c_imaginary = 0.01;
-	julia->depth = julia->min_real - julia->max_real;
+	julia->max_iteration = 150;
+	julia->max_real = 0.5;
+	julia->max_imag = 0.5;
+	julia->min_real = -0.5;
+	julia->min_imag = -0.5;
 }
 
 void	julia_set(t_mlx *mlx)
 {
-	int		x;
-	int		y;
-	int		iteration;
-	t_julia	julia;
+	t_complex	z;
+	t_complex	c;
+	t_julia		julia;
 
 	julia_struct_intel(&julia);
-	x = 0;
-	while (x < WIDTH)
+	julia.x = 0;
+	while (julia.x < WIDTH)
 	{
-		y = 0;
-		while (y < HEIGHT)
+		julia.y = 0;
+		while (julia.y < HEIGHT)
 		{
-			iteration = define_julia(&julia, x, y);
-			if (sqrt(julia.z_real * julia.z_real + julia.z_imaginary
-					* julia.z_imaginary) > julia.depth)
-				draw_pixel_to_image(mlx, x, y, 255 * iteration);
-			else
-				draw_pixel_to_image(mlx, x, y, 255);
-			y++;
+			z.real = 2 * (julia.max_real - julia.min_real)
+				* (julia.x - WIDTH / 2) / HEIGHT;
+			z.imag = 2 * (julia.max_imag - julia.min_imag)
+				* (julia.y - HEIGHT / 2) / HEIGHT;
+			c.real = -0.8;
+			c.imag = 0.156;
+			draw_julia(&julia, z, c, mlx);
+			julia.y++;
 		}
-		x++;
+		julia.x++;
 	}
 }
