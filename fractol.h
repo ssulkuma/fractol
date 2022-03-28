@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 17:08:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 11:36:07 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@
 # define HEIGHT 800
 
 # define ESC_KEY 53
+# define ONE_KEY 18
+# define TWO_KEY 19
+# define THREE_KEY 20
+# define FOUR_KEY 21
+# define FIVE_KEY 23
+# define SIX_KEY 22
+# define SEVEN_KEY 26
+# define PLUS_KEY 27
+# define MINUS_KEY 44
+# define J_KEY 38
+# define M_KEY 46
+# define N_KEY 45
 
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5 
@@ -38,6 +50,8 @@ typedef struct s_mlx
 	int		endian;
 	int		fractal;
 	int		color;
+	int		zoom;
+	int		iteration;
 }			t_mlx;
 
 typedef struct s_complex
