@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 14:10:05 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:16:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	fractal(t_fractal *mandel, t_complex z, t_complex c, t_mlx *mlx)
 	if (iteration == mlx->max_iteration)
 		draw_pixel_to_image(mlx, x, y, 0x000000);
 	else
-		draw_pixel_to_image(mlx, x, y, 500 * iteration / 50);
+		draw_pixel_to_image(mlx, x, y, define_color(iteration, mlx));
 }
 
 static void	mandel_struct_intel(t_mlx *mlx, t_fractal *mandel)

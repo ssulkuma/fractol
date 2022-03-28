@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 14:09:15 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:18:51 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	fractal(t_fractal *julia, t_complex z, t_complex c, t_mlx *mlx)
 		iteration++;
 	}
 	if (iteration != mlx->max_iteration)
-		draw_pixel_to_image(mlx, x, y, iteration * 15);
+		draw_pixel_to_image(mlx, x, y, define_color(iteration, mlx));
 	else
 		draw_pixel_to_image(mlx, x, y, 0x000000);
 }

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 16:34:50 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:17:19 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		menu(t_mlx *mlx);
 void		mandelbrot_set(t_mlx *mlx);
 void		julia_set(t_mlx *mlx);
 void		newton_set(t_mlx *mlx);
+int			define_color(int iteration, t_mlx *mlx);
 int			key_events(int keycode, t_mlx *mlx);
 int			mouse_events(int button, int x, int y, t_mlx *mlx);
 int			mouse_movements(int x, int y, t_mlx *mlx);

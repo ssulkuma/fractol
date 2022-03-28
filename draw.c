@@ -6,11 +6,32 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 16:47:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:15:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	define_color(int iteration, t_mlx *mlx)
+{
+	int	color;
+
+	if (mlx->color == 1)
+		color = (0xFF0000 + iteration * 10);
+	else if (mlx->color == 2)	
+		color = (0x009900 + iteration * 10);
+	else if (mlx->color == 3)
+		color = (0x0000FF + iteration * 10);
+	else if (mlx->color == 4)
+		color = (0xFFE135 + iteration * 10);
+	else if (mlx->color == 5)
+		color = (0x301934 + iteration * 10);
+	else if (mlx->color == 6)
+		color = (0xFFA500 + iteration * 10);
+	else
+		color = (255 * iteration * 10);
+	return (color);
+}
 
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 {

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:53:01 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 16:42:05 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:22:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	menu(t_mlx *mlx)
 {
 	if (mlx->fractal == 1)
-		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0xFF0000, "Julia");
+		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0x000000, "Julia");
 	else if (mlx->fractal == 2)
-		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0xFF0000, "Mandelbrot");
+		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0x000000, "Mandelbrot");
 	else if (mlx->fractal == 3)
-		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0xFF0000, "Newton");
+		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0x000000, "Newton");
 	mlx_string_put(mlx->connection, mlx->window, 25, 40, 0xFFFFFF, "Change fractal:");
 	mlx_string_put(mlx->connection, mlx->window, 75, 60, 0xFFFFFF, "Julia [J]");
 	mlx_string_put(mlx->connection, mlx->window, 25, 80, 0xFFFFFF, "Mandelbrot [M]");
