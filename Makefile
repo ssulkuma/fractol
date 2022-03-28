@@ -6,12 +6,20 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/03/25 17:06:39 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/03/28 14:41:34 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-SRC_FILES = main.c events.c draw.c mandelbrot.c julia.c newton.c complex.c complex_2.c
+SRC_FILES = main.c \
+			draw.c \
+			julia.c \
+			mandelbrot.c \
+			newton.c \
+			complex.c \
+			complex_2.c \
+			key_events.c \
+			mouse_events.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 HEADERS = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft

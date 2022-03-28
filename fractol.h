@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 11:36:07 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:39:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_mlx
 	int		fractal;
 	int		color;
 	int		zoom;
-	int		iteration;
+	int		max_iteration;
 }			t_mlx;
 
 typedef struct s_complex
@@ -64,7 +64,6 @@ typedef struct s_fractal
 {
 	int		x;
 	int		y;
-	int		max_iteration;
 	double	max_real;
 	double	max_imag;
 	double	min_real;
@@ -73,12 +72,14 @@ typedef struct s_fractal
 }			t_fractal;
 
 void		error(const char *str);
-void		events(t_mlx *mlx);
 void		draw(t_mlx *mlx);
 void		draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void		mandelbrot_set(t_mlx *mlx);
 void		julia_set(t_mlx *mlx);
 void		newton_set(t_mlx *mlx);
+int			key_events(int keycode, t_mlx *mlx);
+int			mouse_events(int button, int x, int y, t_mlx *mlx);
+int			mouse_movements(int x, int y, t_mlx *mlx);
 double		complex_abs(t_complex a);
 t_complex	complex_add(t_complex a, t_complex b);
 t_complex	complex_sub(t_complex a, t_complex b);

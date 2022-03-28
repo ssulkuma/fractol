@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 12:23:59 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:42:05 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ static void	check_fractal_type(t_mlx *mlx, char **argv)
 	}
 }
 
+static void	struct_intel(t_mlx *mlx)
+{
+	mlx->color = 1;
+	mlx->zoom = 0;
+	mlx->max_iteration = 100;
+}
+
 void	error(const char *str)
 {
 	perror(str);
@@ -50,15 +57,17 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	check_fractal_type(&mlx, argv);
+	struct_intel(&mlx);
 	mlx.connection = mlx_init();
 	if (!mlx.connection)
 		error("error");
 	mlx.window = mlx_new_window(mlx.connection, WIDTH, HEIGHT, "Fract'ol");
 	if (!mlx.window)
 		error("error");
-	mlx.zoom = 0;
 	draw(&mlx);
-	events(&mlx);
+	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
+	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
+	//mlx_hook(mlx.window, 6, 0, mouse_movements, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }

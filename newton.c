@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/25 17:14:05 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:07:59 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	fractal(t_fractal *newton, t_complex z, t_complex *root, t_mlx *mlx)
 	while (complex_abs(complex_sub(z, root[0])) > newton->tolerance
 		&& complex_abs(complex_sub(z, root[1])) > newton->tolerance
 		&& complex_abs(complex_sub(z, root[2])) > newton->tolerance
-		&& iteration < newton->max_iteration)
+		&& iteration < mlx->max_iteration)
 	{
 		z = complex_sub(z, complex_div(newton_func(z), newton_deri(z)));
 		iteration++;
@@ -55,7 +55,7 @@ static void	fractal(t_fractal *newton, t_complex z, t_complex *root, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, 255 - iteration * 15);
 }
 
-static void	newton_struct_intel(t_complex *root, t_fractal *newton)
+static void	newton_struct_intel(t_mlx *mlx, t_complex *root, t_fractal *newton)
 {
 	root[0].real = 1;
 	root[0].imag = 0;
@@ -63,12 +63,13 @@ static void	newton_struct_intel(t_complex *root, t_fractal *newton)
 	root[1].imag = sqrt(3) / 2;
 	root[2].real = -0.5;
 	root[2].imag = -sqrt(3) / 2;
-	newton->max_iteration = 100;
 	newton->max_real = 1;
 	newton->max_imag = 1;
 	newton->min_real = -1;
 	newton->min_imag = -1;
 	newton->tolerance = 0.000001;
+	if (mlx->max_iteration < 10)
+		mlx->max_iteration = 10;
 }
 
 void	newton_set(t_mlx *mlx)
@@ -78,7 +79,7 @@ void	newton_set(t_mlx *mlx)
 	t_fractal	newton;
 
 	newton.x = 0;
-	newton_struct_intel(root, &newton);
+	newton_struct_intel(mlx, root, &newton);
 	while (newton.x < WIDTH)
 	{
 		newton.y = 0;
