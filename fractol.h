@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 14:39:11 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:34:50 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define J_KEY 38
 # define M_KEY 46
 # define N_KEY 45
+# define H_KEY 4
 
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5 
@@ -51,6 +52,7 @@ typedef struct s_mlx
 	int		fractal;
 	int		color;
 	int		zoom;
+	int		menu;
 	int		max_iteration;
 }			t_mlx;
 
@@ -74,6 +76,7 @@ typedef struct s_fractal
 void		error(const char *str);
 void		draw(t_mlx *mlx);
 void		draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
+void		menu(t_mlx *mlx);
 void		mandelbrot_set(t_mlx *mlx);
 void		julia_set(t_mlx *mlx);
 void		newton_set(t_mlx *mlx);

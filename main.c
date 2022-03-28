@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 14:42:05 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:36:13 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->color = 1;
 	mlx->zoom = 0;
 	mlx->max_iteration = 100;
+	mlx->menu = 0;
 }
 
 void	error(const char *str)

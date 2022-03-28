@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 14:37:00 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:35:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@ static void	iteration_keys(int keycode, t_mlx *mlx)
 	draw(mlx);
 }
 
+static void	menu_key(t_mlx *mlx)
+{
+	if (mlx->menu == 1)
+		mlx->menu = 0;
+	else
+		mlx->menu = 1;
+	mlx_destroy_image(mlx->connection, mlx->image);
+	mlx_clear_window(mlx->connection, mlx->window);
+	draw(mlx);	
+}
+
 int	key_events(int keycode, t_mlx *mlx)
 {
 	if (keycode == ONE_KEY || keycode == TWO_KEY || keycode == THREE_KEY
@@ -67,6 +78,8 @@ int	key_events(int keycode, t_mlx *mlx)
 		fractal_keys(keycode, mlx);
 	if (keycode == PLUS_KEY || keycode == MINUS_KEY)
 		iteration_keys(keycode, mlx);
+	if (keycode == H_KEY)
+		menu_key(mlx);
 	if (keycode == ESC_KEY)
 	{
 		mlx_destroy_image(mlx->connection, mlx->image);

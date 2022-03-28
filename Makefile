@@ -6,7 +6,7 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/03/28 14:41:34 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/03/28 15:11:39 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC_FILES = main.c \
 			complex.c \
 			complex_2.c \
 			key_events.c \
-			mouse_events.c
+			mouse_events.c \
+			menu.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 HEADERS = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft

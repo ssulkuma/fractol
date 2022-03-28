@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/23 15:19:01 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:47:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,8 @@ void	draw(t_mlx *mlx)
 	if (mlx->fractal == 3)
 		newton_set(mlx);
 	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
+	if (mlx->menu == 1)
+		menu(mlx);
+	else
+		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0xFFFFFF, "Menu [H]");
 }
