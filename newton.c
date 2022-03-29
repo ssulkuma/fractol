@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 14:07:59 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:41:20 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static void	fractal(t_fractal *newton, t_complex z, t_complex *root, t_mlx *mlx)
 		iteration++;
 	}
 	if (complex_abs(complex_sub(z, root[0])) < newton->tolerance)
-		draw_pixel_to_image(mlx, x, y, (255 - iteration * 15) << 16);
+		draw_pixel_to_image(mlx, x, y, define_root0_color(iteration, mlx));
 	else if (complex_abs(complex_sub(z, root[1])) < newton->tolerance)
-		draw_pixel_to_image(mlx, x, y, (255 - iteration * 15) << 8);
+		draw_pixel_to_image(mlx, x, y, define_root1_color(iteration, mlx));
 	else if (complex_abs(complex_sub(z, root[2])) < newton->tolerance)
-		draw_pixel_to_image(mlx, x, y, 255 - iteration * 15);
+		draw_pixel_to_image(mlx, x, y, define_root2_color(iteration, mlx));
 }
 
 static void	newton_struct_intel(t_mlx *mlx, t_complex *root, t_fractal *newton)
@@ -68,8 +68,8 @@ static void	newton_struct_intel(t_mlx *mlx, t_complex *root, t_fractal *newton)
 	newton->min_real = -1;
 	newton->min_imag = -1;
 	newton->tolerance = 0.000001;
-	if (mlx->max_iteration < 10)
-		mlx->max_iteration = 10;
+	if (mlx->max_iteration < 5)
+		mlx->max_iteration = 5;
 }
 
 void	newton_set(t_mlx *mlx)
