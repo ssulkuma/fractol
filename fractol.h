@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/29 11:40:12 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:18:54 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,14 @@ typedef struct s_mlx
 	int		endian;
 	int		fractal;
 	int		color;
-	int		zoom;
 	int		menu;
 	int		max_iteration;
+	double	zoom;
+	double	mouse;
+	double	max_real;
+	double	max_imag;
+	double	min_real;
+	double	min_imag;
 }			t_mlx;
 
 typedef struct s_complex

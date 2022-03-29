@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 16:35:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:21:22 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	menu_key(t_mlx *mlx)
 		mlx->menu = 1;
 	mlx_destroy_image(mlx->connection, mlx->image);
 	mlx_clear_window(mlx->connection, mlx->window);
-	draw(mlx);	
+	draw(mlx);
 }
 
 int	key_events(int keycode, t_mlx *mlx)
