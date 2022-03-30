@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/28 18:18:51 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:55:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	julia_set(t_mlx *mlx)
 				* (julia.x - WIDTH / 2) / HEIGHT;
 			z.imag = 2 * (julia.max_imag - julia.min_imag)
 				* (julia.y - HEIGHT / 2) / HEIGHT;
-			c.real = -0.8;
-			c.imag = 0.156;
+			c.real = mlx->mouse_x;
+			c.imag = mlx->mouse_y;
 			fractal(&julia, z, c, mlx);
 			julia.y++;
 		}

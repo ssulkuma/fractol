@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/29 17:18:22 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:13:06 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->min_real = -2;
 	mlx->max_imag = 1;
 	mlx->min_imag = -1;
+	mlx->mouse_x = -0.08;
+	mlx->mouse_y = 0.156;
+	mlx->lock = 1;
 }
 
 void	error(const char *str)
@@ -72,7 +75,7 @@ int	main(int argc, char **argv)
 	draw(&mlx);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
-	//mlx_hook(mlx.window, 6, 0, mouse_movements, &mlx);
+	mlx_hook(mlx.window, 6, 0, mouse_movements, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }

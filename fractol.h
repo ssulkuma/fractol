@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/29 17:18:54 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:10:42 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define N_KEY 45
 # define H_KEY 4
 
+# define MOUSE_LEFT 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5 
 
@@ -53,8 +54,10 @@ typedef struct s_mlx
 	int		color;
 	int		menu;
 	int		max_iteration;
+	int		lock;
 	double	zoom;
-	double	mouse;
+	double	mouse_x;
+	double	mouse_y;
 	double	max_real;
 	double	max_imag;
 	double	min_real;
