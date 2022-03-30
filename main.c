@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 12:13:06 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:58:50 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static void	check_fractal_type(t_mlx *mlx, char **argv)
 static void	struct_intel(t_mlx *mlx)
 {
 	mlx->color = 1;
-	mlx->zoom = 1;
+	//mlx->zoom = 1;
 	mlx->max_iteration = 100;
 	mlx->menu = 0;
-	mlx->max_real = 1;
 	mlx->min_real = -2;
-	mlx->max_imag = 1;
-	mlx->min_imag = -1;
+	mlx->max_real = 2;
+	mlx->min_imag = -2;
+	mlx->max_imag = mlx->min_imag - (mlx->max_real - mlx->min_real) * HEIGHT / WIDTH;
 	mlx->mouse_x = -0.08;
 	mlx->mouse_y = 0.156;
 	mlx->lock = 1;

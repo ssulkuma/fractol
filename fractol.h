@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 12:10:42 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:00:12 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ typedef struct s_mlx
 	int		menu;
 	int		max_iteration;
 	int		lock;
-	double	zoom;
+	double	zoom_x;
+	double	zoom_y;
 	double	mouse_x;
 	double	mouse_y;
 	double	max_real;
