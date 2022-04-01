@@ -6,7 +6,7 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/03/29 14:18:29 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/04/01 17:41:47 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC_FILES = main.c \
 			julia.c \
 			mandelbrot.c \
 			newton.c \
+			burning_ship.c \
 			complex.c \
 			complex_2.c \
 			key_events.c \

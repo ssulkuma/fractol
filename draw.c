@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:27:42 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:41:26 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	draw(t_mlx *mlx)
 		mandelbrot_set(mlx);
 	if (mlx->fractal == 3)
 		newton_set(mlx);
+	if (mlx->fractal == 4)
+		burning_ship_set(mlx);
 	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
 	if (mlx->menu == 1)
 		menu(mlx);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:39:09 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:40:51 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ static void	check_fractal_type(t_mlx *mlx, char **argv)
 		mlx->fractal = 2;
 	else if (!ft_strcmp(argv[1], "Newton") || !ft_strcmp(argv[1], "newton"))
 		mlx->fractal = 3;
+	else if (!ft_strcmp(argv[1], "Burning_Ship")
+			|| !ft_strcmp(argv[1], "burning_ship"))
+		mlx->fractal = 4;
 	else
 	{
 		ft_putendl("Invalid fractal type. Available types:");
 		ft_putendl("-->> Julia");
 		ft_putendl("-->> Mandelbrot");
 		ft_putendl("-->> Newton");
+		ft_putendl("-->> Burning_Ship");
 		exit(1);
 	}
 }
@@ -63,6 +67,7 @@ int	main(int argc, char **argv)
 		ft_putendl("-->> Julia");
 		ft_putendl("-->> Mandelbrot");
 		ft_putendl("-->> Newton");
+		ft_putendl("-->> Burning_Ship");
 		return (1);
 	}
 	check_fractal_type(&mlx, argv);

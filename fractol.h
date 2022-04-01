@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:37:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:46:33 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void		menu(t_mlx *mlx);
 void		mandelbrot_set(t_mlx *mlx);
 void		julia_set(t_mlx *mlx);
 void		newton_set(t_mlx *mlx);
+void		burning_ship_set(t_mlx *mlx);
 int			define_color(int iteration, t_mlx *mlx);
 int			define_root0_color(int iteration, t_mlx *mlx);
 int			define_root1_color(int iteration, t_mlx *mlx);
