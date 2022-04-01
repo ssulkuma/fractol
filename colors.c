@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:16:43 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 13:08:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:57:45 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	define_color(int iteration, t_mlx *mlx)
 	else if (mlx->color == 2)
 		color = (0x009900 + iteration * 10);
 	else if (mlx->color == 3)
-		color = (0x0000FF + iteration * 10);
+		color = (0x73C2FB - iteration * 10);
 	else if (mlx->color == 4)
 		color = (0xFFE135 + iteration * 10);
 	else if (mlx->color == 5)

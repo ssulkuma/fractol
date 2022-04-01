@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 17:00:12 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:52:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <math.h>
 
-# define WIDTH 1500
+# define WIDTH 1200
 # define HEIGHT 800
 
 # define ESC_KEY 53

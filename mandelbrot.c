@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 17:00:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:26:53 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,14 @@ static void	fractal(t_fractal *mandel, t_complex z, t_complex c, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, define_color(iteration, mlx));
 }
 
-static void	mandel_struct_intel(t_mlx *mlx, t_fractal *mandel)
-{
-	mandel->max_real = 1;
-	mandel->max_imag = 1;
-	mandel->min_real = -2;
-	mandel->min_imag = -1;
-	if (mlx->max_iteration < 10)
-		mlx->max_iteration = 10;
-}
-
 void	mandelbrot_set(t_mlx *mlx)
 {
 	t_complex	z;
 	t_complex	c;
 	t_fractal	mandel;
 
-	mandel_struct_intel(mlx, &mandel);
+	if (mlx->max_iteration < 10)
+		mlx->max_iteration = 10;
 	mandel.x = 0;
 	while (mandel.x < WIDTH)
 	{
@@ -57,10 +48,10 @@ void	mandelbrot_set(t_mlx *mlx)
 		{
 			z.real = 0;
 			z.imag = 0;
-			c.real = mlx->zoom_x; //(mlx->max_real - mlx->min_real) * mandel.x / WIDTH
-				//+ mlx->min_real;
-			c.imag = mlx->zoom_y; //(mlx->max_imag - mlx->min_imag) * mandel.y / HEIGHT
-				//+ mlx->min_imag;
+			c.real = mandel.x / (WIDTH / (mlx->max_real - mlx->min_real))
+				+ mlx->min_real;
+			c.imag = mandel.y / (HEIGHT / (mlx->max_imag - mlx->min_imag))
+				+ mlx->min_imag;
 			fractal(&mandel, z, c, mlx);
 			mandel.y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:19:36 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 17:02:00 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:59:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,26 @@ static void	apply_zoom(int x, int y, double zoom, t_mlx *mlx)
 	double	real_factor;
 	double	imag_factor;
 
-	zoom = 1;
-	real_factor = (mlx->max_real - mlx->min_real) / (WIDTH - 1);
-	imag_factor = (mlx->max_imag - mlx->min_imag) / (HEIGHT - 1);
-	mlx->zoom_x = mlx->min_real + x * real_factor;
-	mlx->zoom_y = mlx->max_imag - y * imag_factor;
+	real_factor = (double)x / (WIDTH / (mlx->max_real - mlx->min_real)) + mlx->min_real;
+	imag_factor = (double)y / (HEIGHT / (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
+	//printf("REAL %f\n", real_factor);
+	//printf("IMAG %f\n", imag_factor);
+	mlx->max_real = real_factor + ((mlx->max_real - real_factor) * (1.0 / zoom));
+	mlx->min_real = real_factor + ((mlx->min_real - real_factor) * (1.0 / zoom));
+	mlx->max_imag = imag_factor + ((mlx->max_imag - imag_factor) * (1.0 / zoom));
+	mlx->min_imag = imag_factor + ((mlx->min_imag - imag_factor) * (1.0 / zoom));
+	//printf("REAL MAX %f\n", mlx->max_real);
+	//printf("REAL MIN %f\n", mlx->min_real);
+	//printf("IMAG MAX %f\n", mlx->max_imag);
+	//printf("IMAG MIN %f\n\n", mlx->min_imag);
+	/*
+	else
+	{
+		mlx->max_real -= 0.05;
+		mlx->min_real += 0.05;
+		mlx->max_imag -= 0.05;
+		mlx->min_imag += 0.05;
+	}*/
 }
 
 int	mouse_events(int button, int x, int y, t_mlx *mlx)
@@ -53,12 +68,12 @@ int	mouse_events(int button, int x, int y, t_mlx *mlx)
 	}
 	if (button == SCROLL_UP)
 	{
-		zoom = 1.0 * 1.1;
+		zoom = 1.1;
 		apply_zoom(x, y, zoom, mlx);
 	}
 	if (button == SCROLL_DOWN)
 	{
-		zoom = 1.0 * 0.9;
+		zoom = 0.9;
 		apply_zoom(x, y, zoom, mlx);
 	}
 	mlx_destroy_image(mlx->connection, mlx->image);

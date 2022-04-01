@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/30 12:30:22 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:41:50 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ static void	newton_struct_intel(t_mlx *mlx, t_complex *root, t_fractal *newton)
 	root[1].imag = sqrt(3) / 2;
 	root[2].real = -0.5;
 	root[2].imag = -sqrt(3) / 2;
-	newton->max_real = 1;
-	newton->max_imag = 1;
-	newton->min_real = -1;
-	newton->min_imag = -1;
 	newton->tolerance = 0.000001;
 	if (mlx->max_iteration < 5)
 		mlx->max_iteration = 5;
@@ -85,10 +81,10 @@ void	newton_set(t_mlx *mlx)
 		newton.y = 0;
 		while (newton.y < HEIGHT)
 		{
-			z.real = newton.min_real + ((newton.max_real - newton.min_real)
-					/ HEIGHT) * newton.x;
-			z.imag = newton.min_imag + ((newton.max_imag - newton.min_imag)
-					/ HEIGHT) * newton.y;
+			z.real = newton.x / (HEIGHT / (mlx->max_real - mlx->min_real))
+				+ mlx->min_real;
+			z.imag = newton.y / (HEIGHT / (mlx->max_imag - mlx->min_imag))
+				+ mlx->min_imag;
 			fractal(&newton, z, root, mlx);
 			newton.y++;
 		}
