@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/03/29 17:17:02 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:27:42 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 
 void	draw(t_mlx *mlx)
 {
+	void	*con;
+	void	*win;
+
+	con = mlx->connection;
+	win = mlx->window;
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
@@ -39,5 +44,5 @@ void	draw(t_mlx *mlx)
 	if (mlx->menu == 1)
 		menu(mlx);
 	else
-		mlx_string_put(mlx->connection, mlx->window, 25, 20, 0xFFFFFF, "Menu [H]");
+		mlx_string_put(con, win, 25, 20, 0xFFFFFF, "Menu [H]");
 }
