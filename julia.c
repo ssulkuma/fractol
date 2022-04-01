@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 15:38:26 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:52:41 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	julia_set(t_mlx *mlx)
 		julia.y = 0;
 		while (julia.y < HEIGHT)
 		{
-			z.real = julia.x / (HEIGHT / (mlx->max_real - mlx->min_real))
-				+ mlx->min_real;
-			z.imag = julia.y / (HEIGHT / (mlx->max_imag - mlx->min_imag))
-				+ mlx->min_imag;
+			z.real = (julia.x + mlx->position_x) / (HEIGHT
+					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
+			z.imag = (julia.y + mlx->position_y) / (HEIGHT
+					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
 			c.real = mlx->mouse_x;
 			c.imag = mlx->mouse_y;
 			fractal(&julia, z, c, mlx);

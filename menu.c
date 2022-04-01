@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:53:01 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:21:51 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:49:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	menu(t_mlx *mlx)
 	mlx_string_put(con, win, 25, 300, 0xFFFFFF, "Precision: [+] / [-]");
 	mlx_string_put(con, win, 25, 320, 0xFFFFFF, "Lock: [left mouse click]");
 	mlx_string_put(con, win, 25, 340, 0xFFFFFF, "Manipulate: [move mouse]");
-	mlx_string_put(con, win, 25, 360, 0xFFFFFF, "Zoom: [scroll mouse]");
-	mlx_string_put(con, win, 25, 390, 0xFFFFFF, "Hide menu: [H]");
-	mlx_string_put(con, win, 25, 410, 0xFFFFFF, "Exit: [ESC]");
+	mlx_string_put(con, win, 25, 360, 0xFFFFFF, "Move: [arrow keys]");
+	mlx_string_put(con, win, 25, 380, 0xFFFFFF, "Zoom: [scroll mouse]");
+	mlx_string_put(con, win, 25, 410, 0xFFFFFF, "Hide menu: [H]");
+	mlx_string_put(con, win, 25, 430, 0xFFFFFF, "Exit: [ESC]");
 }

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:24:12 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:43:04 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,16 @@ static void	fractal_keys(int keycode, t_mlx *mlx)
 	draw(mlx);
 }
 
-static void	iteration_keys(int keycode, t_mlx *mlx)
+static void	iteration_and_movement_keys(int keycode, t_mlx *mlx)
 {
+	if (keycode == ARROW_LEFT)
+		mlx->position_x += 10;
+	if (keycode == ARROW_RIGHT)
+		mlx->position_x -= 10;
+	if (keycode == ARROW_DOWN)
+		mlx->position_y -= 10;
+	if (keycode == ARROW_UP)
+		mlx->position_y += 10;
 	if (keycode == PLUS_KEY)
 		mlx->max_iteration += 5;
 	if (keycode == MINUS_KEY)
@@ -80,8 +88,9 @@ int	key_events(int keycode, t_mlx *mlx)
 		color_keys(keycode, mlx);
 	if (keycode == J_KEY || keycode == M_KEY || keycode == N_KEY)
 		fractal_keys(keycode, mlx);
-	if (keycode == PLUS_KEY || keycode == MINUS_KEY)
-		iteration_keys(keycode, mlx);
+	if (keycode == PLUS_KEY || keycode == MINUS_KEY
+		|| (keycode >= ARROW_LEFT && keycode <= ARROW_UP))
+		iteration_and_movement_keys(keycode, mlx);
 	if (keycode == H_KEY)
 		menu_key(mlx);
 	if (keycode == ESC_KEY)

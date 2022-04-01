@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 15:26:53 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:54:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	mandelbrot_set(t_mlx *mlx)
 		{
 			z.real = 0;
 			z.imag = 0;
-			c.real = mandel.x / (WIDTH / (mlx->max_real - mlx->min_real))
-				+ mlx->min_real;
-			c.imag = mandel.y / (HEIGHT / (mlx->max_imag - mlx->min_imag))
-				+ mlx->min_imag;
+			c.real = (mandel.x + mlx->position_x) / (WIDTH
+					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
+			c.imag = (mandel.y + mlx->position_y) / (HEIGHT
+					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
 			fractal(&mandel, z, c, mlx);
 			mandel.y++;
 		}

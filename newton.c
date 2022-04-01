@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 15:41:50 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:55:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	newton_set(t_mlx *mlx)
 		newton.y = 0;
 		while (newton.y < HEIGHT)
 		{
-			z.real = newton.x / (HEIGHT / (mlx->max_real - mlx->min_real))
-				+ mlx->min_real;
-			z.imag = newton.y / (HEIGHT / (mlx->max_imag - mlx->min_imag))
-				+ mlx->min_imag;
+			z.real = (newton.x + mlx->position_x) / (HEIGHT
+					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
+			z.imag = (newton.y + mlx->position_y) / (HEIGHT
+					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
 			fractal(&newton, z, root, mlx);
 			newton.y++;
 		}
