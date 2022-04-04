@@ -6,11 +6,20 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:16:43 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 17:31:02 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:21:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	rainbow_colors(t_mlx *mlx)
+{
+	mlx->rainbow += 500;
+	mlx_destroy_image(mlx->connection, mlx->image);
+	mlx_clear_window(mlx->connection, mlx->window);
+	draw(mlx);
+	return (0);
+}
 
 int	define_color(int iteration, t_mlx *mlx)
 {
@@ -29,7 +38,7 @@ int	define_color(int iteration, t_mlx *mlx)
 	else if (mlx->color == 6)
 		color = (0xFFA500 + iteration * 10);
 	else
-		color = (255 * iteration * 10);
+		color = 0x000000 + iteration * 10 * mlx->rainbow;
 	return (color);
 }
 

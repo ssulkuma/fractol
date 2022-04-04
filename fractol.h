@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 12:12:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:33:58 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_mlx
 	int		endian;
 	int		fractal;
 	int		color;
+	int		rainbow;
 	int		menu;
 	int		max_iteration;
 	int		lock;
@@ -91,6 +92,7 @@ void		mandelbrot_set(t_mlx *mlx);
 void		julia_set(t_mlx *mlx);
 void		newton_set(t_mlx *mlx);
 void		burning_ship_set(t_mlx *mlx);
+int			rainbow_colors(t_mlx *mlx);
 int			define_color(int iteration, t_mlx *mlx);
 int			define_root0_color(int iteration, t_mlx *mlx);
 int			define_root1_color(int iteration, t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:19:36 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:03:04 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:39:48 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	mouse_events(int button, int x, int y, t_mlx *mlx)
 			mlx->lock = 1;
 		return (0);
 	}
-	if (button == SCROLL_UP)
+	if (button == SCROLL_DOWN)
 	{
 		zoom_factor = 1.1;
 		apply_zoom(x, y, zoom_factor, mlx);
 	}
-	if (button == SCROLL_DOWN)
+	if (button == SCROLL_UP)
 	{
 		zoom_factor = 0.9;
 		apply_zoom(x, y, zoom_factor, mlx);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 17:41:26 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:32:26 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	draw(t_mlx *mlx)
 	if (mlx->menu == 1)
 		menu(mlx);
 	else
-		mlx_string_put(con, win, 25, 20, 0xFFFFFF, "Menu [H]");
+		mlx_string_put(con, win, 35, 20, 0xFFFFFF, "Menu [H]");
 }

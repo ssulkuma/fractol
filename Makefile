@@ -6,7 +6,7 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/04/01 17:41:47 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/04/04 14:57:39 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_FILES = main.c \
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 HEADERS = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft
-FLAGS = -Wall -Wextra -Werror -O3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3 -g
 FRAMEWORK = -framework OpenGL -framework AppKit
 GCH = fractol.h.gch
 
