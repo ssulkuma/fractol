@@ -6,7 +6,7 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/02 11:58:18 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/03/14 10:54:49 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/04/04 11:57:59 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC_FILES = ft_atoi.c \
 			ft_isspace.c \
 			ft_isblank.c \
 			ft_isgraph.c \
+			ft_fabs.c \
 			get_next_line.c
 OBJS = $(patsubst %.c, %.o, $(SRC_FILES))
 GCH = libft.h.gch

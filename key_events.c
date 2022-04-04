@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:43:04 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:22:54 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	fractal_keys(int keycode, t_mlx *mlx)
 		mlx->fractal = 2;
 	if (keycode == N_KEY)
 		mlx->fractal = 3;
+	if (keycode == B_KEY)
+		mlx->fractal = 4;
 	mlx->min_real = -2;
 	mlx->max_real = 1;
 	mlx->min_imag = -2;
@@ -86,7 +88,8 @@ int	key_events(int keycode, t_mlx *mlx)
 		|| keycode == FOUR_KEY || keycode == FIVE_KEY || keycode == SIX_KEY
 		|| keycode == SEVEN_KEY)
 		color_keys(keycode, mlx);
-	if (keycode == J_KEY || keycode == M_KEY || keycode == N_KEY)
+	if (keycode == J_KEY || keycode == M_KEY || keycode == N_KEY
+		|| keycode == B_KEY)
 		fractal_keys(keycode, mlx);
 	if (keycode == PLUS_KEY || keycode == MINUS_KEY
 		|| (keycode >= ARROW_LEFT && keycode <= ARROW_UP))

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:32:39 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 17:54:40 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:04:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	fractal(t_fractal *ship, t_complex z, t_complex c, t_mlx *mlx)
 	iteration = 0;
 	while (iteration < mlx->max_iteration && complex_abs(z) < 4)
 	{
-		z = ;
+		z.real = ft_fabs(z.real);
+		z.imag = ft_fabs(z.imag);
+		z = complex_add(complex_mul(z, z), c);
 		iteration++;
 	}
 	if (iteration == mlx->max_iteration)
