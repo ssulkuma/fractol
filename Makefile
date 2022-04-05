@@ -6,7 +6,7 @@
 #    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/04/04 14:57:39 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/04/05 14:45:06 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_FILES = main.c \
 			colors.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 HEADERS = -I ./minilibx -I ./libft
-LIB = -L ./minilibx -lmlx -L ./libft -lft
+LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
 FLAGS = -Wall -Wextra -Werror -O3 -g
 FRAMEWORK = -framework OpenGL -framework AppKit
 GCH = fractol.h.gch

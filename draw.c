@@ -6,12 +6,50 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 14:32:26 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:33:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+/*
+static void	*render_threads(void *data)
+{
+	int	x;
+	int	y;
 
+	data = NULL;
+	x = WIDTH / MAX_THREADS;
+	while (x < WIDTH / MAX_THREADS)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			
+			y++;
+		}
+		x++;
+	}
+	return (NULL);
+}
+
+static void create_threads(t_mlx *mlx)
+{
+	int			index;
+	int			ret_value;
+	pthread_t	thread_id;
+
+	index = 0;
+	while (index < MAX_THREADS)
+	{
+		ret_value = pthread_create(&thread_id, NULL, render_threads, NULL);
+		if (ret_value)
+			error("error");
+		pthread_join(thread_id, NULL);
+		index++;
+	}
+	draw(mlx);
+}
+*/
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 {
 	char	*pixel;

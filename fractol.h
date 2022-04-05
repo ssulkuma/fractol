@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 14:33:58 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:17:05 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 
 # include <stdio.h>
 # include <math.h>
+# include <pthread.h>
 
 # define WIDTH 1200
 # define HEIGHT 800
+# define MAX_THREADS 10
 
 # define ESC_KEY 53
 # define ONE_KEY 18
