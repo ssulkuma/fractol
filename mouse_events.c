@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:19:36 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 14:39:48 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:14:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	mouse_movements(int x, int y, t_mlx *mlx)
 		y -= HEIGHT / 2;
 		mlx->mouse_x = ((double)x / WIDTH) * 2;
 		mlx->mouse_y = ((double)y / HEIGHT) * 2;
-		mlx_destroy_image(mlx->connection, mlx->image);
-		mlx_clear_window(mlx->connection, mlx->window);
 		draw(mlx);
 	}
 	return (0);
@@ -66,8 +64,6 @@ int	mouse_events(int button, int x, int y, t_mlx *mlx)
 		zoom_factor = 0.9;
 		apply_zoom(x, y, zoom_factor, mlx);
 	}
-	mlx_destroy_image(mlx->connection, mlx->image);
-	mlx_clear_window(mlx->connection, mlx->window);
 	draw(mlx);
 	return (0);
 }

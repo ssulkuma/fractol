@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 13:22:54 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:37:03 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static void	color_keys(int keycode, t_mlx *mlx)
 		mlx->color = 6;
 	if (keycode == SEVEN_KEY)
 		mlx->color = 7;
-	mlx_destroy_image(mlx->connection, mlx->image);
-	mlx_clear_window(mlx->connection, mlx->window);
 	draw(mlx);
 }
 
@@ -47,8 +45,6 @@ static void	fractal_keys(int keycode, t_mlx *mlx)
 	mlx->max_real = 1;
 	mlx->min_imag = -2;
 	mlx->max_imag = 2;
-	mlx_destroy_image(mlx->connection, mlx->image);
-	mlx_clear_window(mlx->connection, mlx->window);
 	draw(mlx);
 }
 
@@ -66,8 +62,6 @@ static void	iteration_and_movement_keys(int keycode, t_mlx *mlx)
 		mlx->max_iteration += 5;
 	if (keycode == MINUS_KEY)
 		mlx->max_iteration -= 5;
-	mlx_destroy_image(mlx->connection, mlx->image);
-	mlx_clear_window(mlx->connection, mlx->window);
 	draw(mlx);
 }
 
@@ -77,8 +71,6 @@ static void	menu_key(t_mlx *mlx)
 		mlx->menu = 0;
 	else
 		mlx->menu = 1;
-	mlx_destroy_image(mlx->connection, mlx->image);
-	mlx_clear_window(mlx->connection, mlx->window);
 	draw(mlx);
 }
 

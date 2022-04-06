@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:54:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:55:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,22 @@ static void	fractal(t_fractal *mandel, t_complex z, t_complex c, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, define_color(iteration, mlx));
 }
 
-void	mandelbrot_set(t_mlx *mlx)
+void	*mandelbrot_set(void *data)
 {
 	t_complex	z;
 	t_complex	c;
 	t_fractal	mandel;
+	t_mlx		*mlx;
+	static int	thread = 0;
 
+	mlx = (t_mlx *)data;
 	if (mlx->max_iteration < 10)
 		mlx->max_iteration = 10;
-	mandel.x = 0;
-	while (mandel.x < WIDTH)
+	thread++;
+	if (thread > MAX_THREADS)
+		thread = 1;
+	mandel.x = WIDTH / MAX_THREADS * (thread - 1);
+	while (mandel.x < WIDTH / MAX_THREADS * thread)
 	{
 		mandel.y = 0;
 		while (mandel.y < HEIGHT)
@@ -57,4 +63,5 @@ void	mandelbrot_set(t_mlx *mlx)
 		}
 		mandel.x++;
 	}
+	pthread_exit(NULL);
 }

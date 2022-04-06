@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:16:43 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 14:21:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:11:18 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	rainbow_colors(t_mlx *mlx)
 {
-	mlx->rainbow += 500;
-	mlx_destroy_image(mlx->connection, mlx->image);
-	mlx_clear_window(mlx->connection, mlx->window);
-	draw(mlx);
+	if (mlx->color == 7)
+	{
+		mlx->rainbow += 500;
+		mlx_destroy_image(mlx->connection, mlx->image);
+		mlx_clear_window(mlx->connection, mlx->window);
+		draw(mlx);
+	}
 	return (0);
 }
 

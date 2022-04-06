@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 14:44:54 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:46:12 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->position_x = 0;
 	mlx->position_y = 0;
 	mlx->rainbow = 5;
+	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
+	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
+			 &mlx->line_len, &mlx->endian);
 }
 
 static void	usage(void)
@@ -77,13 +80,13 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	check_fractal_type(&mlx, argv);
-	struct_intel(&mlx);
 	mlx.connection = mlx_init();
 	if (!mlx.connection)
 		error("error");
 	mlx.window = mlx_new_window(mlx.connection, WIDTH, HEIGHT, "Fract'ol");
 	if (!mlx.window)
 		error("error");
+	struct_intel(&mlx);
 	draw(&mlx);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
