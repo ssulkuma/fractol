@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/06 16:37:03 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:18:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	fractal_keys(int keycode, t_mlx *mlx)
 		mlx->fractal = 3;
 	if (keycode == B_KEY)
 		mlx->fractal = 4;
-	mlx->min_real = -2;
-	mlx->max_real = 1;
-	mlx->min_imag = -2;
-	mlx->max_imag = 2;
+	mlx->min_real = -2.0;
+	mlx->max_real = 0.47;
+	mlx->min_imag = -1.12;
+	mlx->max_imag = 1.12;
 	draw(mlx);
 }
 

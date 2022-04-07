@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:16:43 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 15:32:44 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:04:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	rainbow_colors(t_mlx *mlx)
 	if (mlx->color == 7)
 	{
 		mlx->rainbow += 500;
-		mlx_destroy_image(mlx->connection, mlx->image);
-		mlx_clear_window(mlx->connection, mlx->window);
 		draw(mlx);
 	}
 	return (0);

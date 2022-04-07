@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 15:41:19 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:25:31 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	define_threads(pthread_t *id, void *data, t_mlx *mlx)
 	}
 	if (mlx->fractal == 3)
 	{
+		mlx_clear_window(mlx->connection, mlx->window);
 		if (pthread_create(id, NULL, newton_set, data))
 			error("error");
 	}
