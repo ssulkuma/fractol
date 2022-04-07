@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/01 16:52:41 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:42:35 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,34 @@ static void	fractal(t_fractal *julia, t_complex z, t_complex c, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, define_color(iteration, mlx));
 }
 
-void	julia_set(t_mlx *mlx)
+void	*julia_set(void *data)
 {
 	t_complex	z;
 	t_complex	c;
 	t_fractal	julia;
+	t_thread	*thread;
 
-	if (mlx->max_iteration < 10)
-		mlx->max_iteration = 10;
-	julia.x = 0;
-	while (julia.x < WIDTH)
+	thread = (t_thread *)data;
+	if (thread->mlx->max_iteration < 10)
+		thread->mlx->max_iteration = 10;
+	julia.x = thread->start_x;
+	while (julia.x < thread->end_x)
 	{
 		julia.y = 0;
 		while (julia.y < HEIGHT)
 		{
-			z.real = (julia.x + mlx->position_x) / (HEIGHT
-					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
-			z.imag = (julia.y + mlx->position_y) / (HEIGHT
-					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
-			c.real = mlx->mouse_x;
-			c.imag = mlx->mouse_y;
-			fractal(&julia, z, c, mlx);
+			z.real = (julia.x + thread->mlx->position_x) / (HEIGHT
+					/ (thread->mlx->max_real - thread->mlx->min_real))
+				+ thread->mlx->min_real;
+			z.imag = (julia.y + thread->mlx->position_y) / (HEIGHT
+					/ (thread->mlx->max_imag - thread->mlx->min_imag))
+				+ thread->mlx->min_imag;
+			c.real = thread->mlx->mouse_x;
+			c.imag = thread->mlx->mouse_y;
+			fractal(&julia, z, c, thread->mlx);
 			julia.y++;
 		}
 		julia.x++;
 	}
+	pthread_exit(NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/06 17:16:55 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:29:50 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ typedef struct s_mlx
 	double	min_imag;
 }			t_mlx;
 
+typedef struct s_thread
+{
+	int		start_x;
+	int		end_x;
+	t_mlx	*mlx;
+}			t_thread;
+
 typedef struct s_complex
 {
 	double	real;
@@ -91,9 +98,9 @@ void		draw(t_mlx *mlx);
 void		draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void		menu(t_mlx *mlx);
 void		*mandelbrot_set(void *data);
-void		julia_set(t_mlx *mlx);
-void		newton_set(t_mlx *mlx);
-void		burning_ship_set(t_mlx *mlx);
+void		*julia_set(void *data);
+void		*newton_set(void *data);
+void		*burning_ship_set(void *data);
 int			rainbow_colors(t_mlx *mlx);
 int			define_color(int iteration, t_mlx *mlx);
 int			define_root0_color(int iteration, t_mlx *mlx);

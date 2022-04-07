@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/06 17:55:10 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:42:53 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,26 @@ void	*mandelbrot_set(void *data)
 	t_complex	z;
 	t_complex	c;
 	t_fractal	mandel;
-	t_mlx		*mlx;
-	static int	thread = 0;
+	t_thread	*thread;
 
-	mlx = (t_mlx *)data;
-	if (mlx->max_iteration < 10)
-		mlx->max_iteration = 10;
-	thread++;
-	if (thread > MAX_THREADS)
-		thread = 1;
-	mandel.x = WIDTH / MAX_THREADS * (thread - 1);
-	while (mandel.x < WIDTH / MAX_THREADS * thread)
+	thread = (t_thread *)data;
+	if (thread->mlx->max_iteration < 10)
+		thread->mlx->max_iteration = 10;
+	mandel.x = thread->start_x;
+	while (mandel.x < thread->end_x)
 	{
 		mandel.y = 0;
 		while (mandel.y < HEIGHT)
 		{
 			z.real = 0;
 			z.imag = 0;
-			c.real = (mandel.x + mlx->position_x) / (WIDTH
-					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
-			c.imag = (mandel.y + mlx->position_y) / (HEIGHT
-					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
-			fractal(&mandel, z, c, mlx);
+			c.real = (mandel.x + thread->mlx->position_x) / (WIDTH
+					/ (thread->mlx->max_real - thread->mlx->min_real))
+				+ thread->mlx->min_real;
+			c.imag = (mandel.y + thread->mlx->position_y) / (HEIGHT
+					/ (thread->mlx->max_imag - thread->mlx->min_imag))
+				+ thread->mlx->min_imag;
+			fractal(&mandel, z, c, thread->mlx);
 			mandel.y++;
 		}
 		mandel.x++;

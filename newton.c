@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 16:46:13 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:42:12 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,31 @@ static void	newton_struct_intel(t_mlx *mlx, t_complex *root, t_fractal *newton)
 		mlx->max_iteration = 5;
 }
 
-void	newton_set(t_mlx *mlx)
+void	*newton_set(void *data)
 {
 	t_complex	z;
 	t_complex	root[3];
 	t_fractal	newton;
+	t_thread	*thread;
 
-	newton.x = 0;
-	newton_struct_intel(mlx, root, &newton);
-	while (newton.x < WIDTH)
+	thread = (t_thread *)data;
+	newton_struct_intel(thread->mlx, root, &newton);
+	newton.x = thread->start_x;
+	while (newton.x < thread->end_x)
 	{
 		newton.y = 0;
 		while (newton.y < HEIGHT)
 		{
-			z.real = (newton.x + mlx->position_x) / (HEIGHT
-					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
-			z.imag = (newton.y + mlx->position_y) / (HEIGHT
-					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
-			fractal(&newton, z, root, mlx);
+			z.real = (newton.x + thread->mlx->position_x) / (HEIGHT
+					/ (thread->mlx->max_real - thread->mlx->min_real))
+				+ thread->mlx->min_real;
+			z.imag = (newton.y + thread->mlx->position_y) / (HEIGHT
+					/ (thread->mlx->max_imag - thread->mlx->min_imag))
+				+ thread->mlx->min_imag;
+			fractal(&newton, z, root, thread->mlx);
 			newton.y++;
 		}
 		newton.x++;
 	}
+	pthread_exit(NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:32:39 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 12:04:11 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:40:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,34 @@ static void	fractal(t_fractal *ship, t_complex z, t_complex c, t_mlx *mlx)
 		draw_pixel_to_image(mlx, x, y, define_color(iteration, mlx));
 }
 
-void	burning_ship_set(t_mlx *mlx)
+void	*burning_ship_set(void *data)
 {
 	t_complex	z;
 	t_complex	c;
 	t_fractal	ship;
+	t_thread	*thread;
 
-	if (mlx->max_iteration < 10)
-		mlx->max_iteration = 10;
-	ship.x = 0;
-	while (ship.x < WIDTH)
+	thread = (t_thread *)data;
+	if (thread->mlx->max_iteration < 10)
+		thread->mlx->max_iteration = 10;
+	ship.x = thread->start_x;
+	while (ship.x < thread->end_x)
 	{
 		ship.y = 0;
 		while (ship.y < HEIGHT)
 		{
 			z.real = 0;
 			z.imag = 0;
-			c.real = (ship.x + mlx->position_x) / (WIDTH
-					/ (mlx->max_real - mlx->min_real)) + mlx->min_real;
-			c.imag = (ship.y + mlx->position_y) / (HEIGHT
-					/ (mlx->max_imag - mlx->min_imag)) + mlx->min_imag;
-			fractal(&ship, z, c, mlx);
+			c.real = (ship.x + thread->mlx->position_x) / (WIDTH
+					/ (thread->mlx->max_real - thread->mlx->min_real))
+				+ thread->mlx->min_real;
+			c.imag = (ship.y + thread->mlx->position_y) / (HEIGHT
+					/ (thread->mlx->max_imag - thread->mlx->min_imag))
+				+ thread->mlx->min_imag;
+			fractal(&ship, z, c, thread->mlx);
 			ship.y++;
 		}
 		ship.x++;
 	}
+	pthread_exit(NULL);
 }

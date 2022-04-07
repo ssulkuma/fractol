@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/06 16:46:12 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:41:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->rainbow = 5;
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
-			 &mlx->line_len, &mlx->endian);
+			&mlx->line_len, &mlx->endian);
 }
 
 static void	usage(void)

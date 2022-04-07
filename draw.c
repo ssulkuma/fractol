@@ -6,55 +6,11 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:45:37 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/06 17:55:07 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:41:19 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-void	*render_threads(void *data)
-{
-	int	x;
-	int	y;
-
-	data = NULL;
-	x = WIDTH / MAX_THREADS;
-	while (x < WIDTH / MAX_THREADS)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			
-			y++;
-		}
-		x++;
-	}
-	return (NULL);
-}
-*/
-static void create_threads(t_mlx *mlx)
-{
-	int			index;
-	pthread_t	thread_id[MAX_THREADS];
-
-	index = 0;
-	while (index < MAX_THREADS)
-	{
-		if (mlx->fractal == 2)
-		{
-			if (pthread_create(&(thread_id[index]), NULL, mandelbrot_set, mlx))
-				error("error");
-		}
-		index++;
-	}
-	index = 0;
-	while (index < MAX_THREADS)
-	{
-		pthread_join(thread_id[index], NULL);
-		index++;
-	}
-	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
-}
 
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 {
@@ -68,6 +24,52 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
+static void	define_threads(pthread_t *id, void *data, t_mlx *mlx)
+{
+	if (mlx->fractal == 1)
+	{
+		if (pthread_create(id, NULL, julia_set, data))
+			error("error");
+	}
+	if (mlx->fractal == 2)
+	{
+		if (pthread_create(id, NULL, mandelbrot_set, data))
+			error("error");
+	}
+	if (mlx->fractal == 3)
+	{
+		if (pthread_create(id, NULL, newton_set, data))
+			error("error");
+	}
+	if (mlx->fractal == 4)
+	{
+		if (pthread_create(id, NULL, burning_ship_set, data))
+			error("error");
+	}
+}
+
+static void	create_threads(t_mlx *mlx)
+{
+	int			index;
+	pthread_t	thread_id[MAX_THREADS];
+	t_thread	thread[MAX_THREADS];
+
+	index = -1;
+	while (++index < MAX_THREADS)
+	{
+		thread[index].start_x = WIDTH / MAX_THREADS * index;
+		thread[index].end_x = WIDTH / MAX_THREADS * (index + 1);
+		thread[index].mlx = mlx;
+	}
+	index = -1;
+	while (++index < MAX_THREADS)
+		define_threads(&(thread_id[index]), &(thread[index]), mlx);
+	index = -1;
+	while (++index < MAX_THREADS)
+		pthread_join(thread_id[index], NULL);
+	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
+}
+
 void	draw(t_mlx *mlx)
 {
 	void	*con;
@@ -75,15 +77,7 @@ void	draw(t_mlx *mlx)
 
 	con = mlx->connection;
 	win = mlx->window;
-	if (mlx->fractal == 1)
-		julia_set(mlx);
-	if (mlx->fractal == 2)
-		create_threads(mlx);//mandelbrot_set(mlx);
-	if (mlx->fractal == 3)
-		newton_set(mlx);
-	if (mlx->fractal == 4)
-		burning_ship_set(mlx);
-	//mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
+	create_threads(mlx);
 	if (mlx->menu == 1)
 		menu(mlx);
 	else
