@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/04/07 16:04:30 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/04/08 12:18:53 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,27 +24,27 @@ SRC_FILES = main.c \
 			menu.c \
 			colors.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
-HEADERS = -I ./minilibx -I ./libft
+INCLUDES = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
-FLAGS = -Wall -Wextra -Werror -O3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3 -g
 FRAMEWORK = -framework OpenGL -framework AppKit
-GCH = fractol.h.gch
+HEADER = fractol.h
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
+$(NAME): $(OBJ_FILES) $(HEADER)
 	make -C ./libft
-	gcc $(FLAGS) -c $(SRC_FILES) $(HEADERS)
+	gcc $(FLAGS) -c $(SRC_FILES) $(INCLUDES)
 	gcc $(FLAGS) -o $(NAME) $(OBJ_FILES) $(LIB) $(FRAMEWORK)
 
 clean:
 	make -C ./libft clean
 	/bin/rm -f $(OBJ_FILES)
-	/bin/rm -f $(GCH)
 
 fclean: clean
 	make -C ./libft fclean
 	/bin/rm -f $(NAME)
+
 re: fclean all

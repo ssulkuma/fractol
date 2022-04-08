@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:31:28 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 15:42:53 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 11:39:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void	*mandelbrot_set(void *data)
 	t_thread	*thread;
 
 	thread = (t_thread *)data;
-	if (thread->mlx->max_iteration < 10)
-		thread->mlx->max_iteration = 10;
-	mandel.x = thread->start_x;
-	while (mandel.x < thread->end_x)
+	mandel.x = thread->start_x - 1;
+	while (mandel.x++ < thread->end_x)
 	{
-		mandel.y = 0;
-		while (mandel.y < HEIGHT)
+		mandel.y = -1;
+		while (mandel.y++ < HEIGHT)
 		{
 			z.real = 0;
 			z.imag = 0;
@@ -57,9 +55,7 @@ void	*mandelbrot_set(void *data)
 					/ (thread->mlx->max_imag - thread->mlx->min_imag))
 				+ thread->mlx->min_imag;
 			fractal(&mandel, z, c, thread->mlx);
-			mandel.y++;
 		}
-		mandel.x++;
 	}
 	pthread_exit(NULL);
 }

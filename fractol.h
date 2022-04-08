@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:25:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 16:17:01 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:18:32 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <math.h>
 # include <pthread.h>
 
-# define WIDTH 1200
-# define HEIGHT 800
-# define MAX_THREADS 10
+# define WIDTH 1920
+# define HEIGHT 1200
+# define MAX_THREADS 12
 
 # define ESC_KEY 53
 # define ONE_KEY 18

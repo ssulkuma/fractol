@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:50:55 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 16:18:23 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:22:43 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ static void	fractal_keys(int keycode, t_mlx *mlx)
 	mlx->max_real = 0.47;
 	mlx->min_imag = -1.12;
 	mlx->max_imag = 1.12;
+	if (mlx->fractal == 2)
+	{
+		mlx->min_real = -2.0;
+		mlx->max_real = 2.0;
+		mlx->min_imag = -1.25;
+		mlx->max_imag = 1.25;
+	}
 	draw(mlx);
 }
 

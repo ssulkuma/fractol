@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:32:39 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 15:40:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 11:00:15 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ void	*burning_ship_set(void *data)
 	t_thread	*thread;
 
 	thread = (t_thread *)data;
-	if (thread->mlx->max_iteration < 10)
-		thread->mlx->max_iteration = 10;
-	ship.x = thread->start_x;
-	while (ship.x < thread->end_x)
+	ship.x = thread->start_x - 1;
+	while (ship.x++ < thread->end_x)
 	{
-		ship.y = 0;
-		while (ship.y < HEIGHT)
+		ship.y = -1;
+		while (ship.y++ < HEIGHT)
 		{
 			z.real = 0;
 			z.imag = 0;
@@ -59,9 +57,7 @@ void	*burning_ship_set(void *data)
 					/ (thread->mlx->max_imag - thread->mlx->min_imag))
 				+ thread->mlx->min_imag;
 			fractal(&ship, z, c, thread->mlx);
-			ship.y++;
 		}
-		ship.x++;
 	}
 	pthread_exit(NULL);
 }

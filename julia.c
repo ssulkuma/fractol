@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/07 15:42:35 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 11:03:31 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void	*julia_set(void *data)
 	t_thread	*thread;
 
 	thread = (t_thread *)data;
-	if (thread->mlx->max_iteration < 10)
-		thread->mlx->max_iteration = 10;
-	julia.x = thread->start_x;
-	while (julia.x < thread->end_x)
+	julia.x = thread->start_x - 1;
+	while (julia.x++ < thread->end_x)
 	{
-		julia.y = 0;
-		while (julia.y < HEIGHT)
+		julia.y = -1;
+		while (julia.y++ < HEIGHT)
 		{
 			z.real = (julia.x + thread->mlx->position_x) / (HEIGHT
 					/ (thread->mlx->max_real - thread->mlx->min_real))
@@ -57,9 +55,7 @@ void	*julia_set(void *data)
 			c.real = thread->mlx->mouse_x;
 			c.imag = thread->mlx->mouse_y;
 			fractal(&julia, z, c, thread->mlx);
-			julia.y++;
 		}
-		julia.x++;
 	}
 	pthread_exit(NULL);
 }
