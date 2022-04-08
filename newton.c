@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:24:45 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/08 11:12:22 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:35:13 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*newton_set(void *data)
 		newton.y = 0;
 		while (newton.y < HEIGHT)
 		{
-			z.real = (newton.x + thread->mlx->position_x) / (HEIGHT
+			z.real = (newton.x + thread->mlx->position_x) / (WIDTH
 					/ (thread->mlx->max_real - thread->mlx->min_real))
 				+ thread->mlx->min_real;
 			z.imag = (newton.y + thread->mlx->position_y) / (HEIGHT

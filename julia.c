@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:34:48 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/08 11:03:31 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:46:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*julia_set(void *data)
 		julia.y = -1;
 		while (julia.y++ < HEIGHT)
 		{
-			z.real = (julia.x + thread->mlx->position_x) / (HEIGHT
+			z.real = (julia.x + thread->mlx->position_x) / (WIDTH
 					/ (thread->mlx->max_real - thread->mlx->min_real))
 				+ thread->mlx->min_real;
 			z.imag = (julia.y + thread->mlx->position_y) / (HEIGHT

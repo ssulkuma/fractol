@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:19:36 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/06 17:14:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:32:32 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ int	mouse_movements(int x, int y, t_mlx *mlx)
 	return (0);
 }
 
-static void	apply_zoom(int x, int y, double zoom_factor, t_mlx *mlx)
+static void	apply_zoom(int x, int y, double zoom, t_mlx *mlx)
 {
 	double	real_factor;
 	double	imag_factor;
-	double	zoom;
 
-	zoom = 1.0 / zoom_factor;
 	real_factor = (double)x / (WIDTH / (mlx->max_real - mlx->min_real))
 		+ mlx->min_real;
 	imag_factor = (double)y / (HEIGHT / (mlx->max_imag - mlx->min_imag))
@@ -44,7 +42,7 @@ static void	apply_zoom(int x, int y, double zoom_factor, t_mlx *mlx)
 
 int	mouse_events(int button, int x, int y, t_mlx *mlx)
 {
-	double	zoom_factor;
+	double	zoom;
 
 	if (button == MOUSE_LEFT)
 	{
@@ -54,15 +52,15 @@ int	mouse_events(int button, int x, int y, t_mlx *mlx)
 			mlx->lock = 1;
 		return (0);
 	}
-	if (button == SCROLL_DOWN)
-	{
-		zoom_factor = 1.1;
-		apply_zoom(x, y, zoom_factor, mlx);
-	}
 	if (button == SCROLL_UP)
 	{
-		zoom_factor = 0.9;
-		apply_zoom(x, y, zoom_factor, mlx);
+		zoom = 1.1;
+		apply_zoom(x, y, zoom, mlx);
+	}
+	if (button == SCROLL_DOWN)
+	{
+		zoom = 0.9;
+		apply_zoom(x, y, zoom, mlx);
 	}
 	draw(mlx);
 	return (0);
