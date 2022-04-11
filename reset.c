@@ -6,13 +6,13 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:58:27 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/11 11:53:09 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:08:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	reset_range(t_mlx *mlx)
+static void	reset_position(t_mlx *mlx)
 {
 	if (mlx->fractal == 1)
 	{
@@ -36,7 +36,7 @@ static void	reset_range(t_mlx *mlx)
 	}
 }
 
-static void	reset_position(t_mlx *mlx)
+static void	reset_range(t_mlx *mlx)
 {
 	mlx->min_real = -2.0;
 	mlx->max_real = 0.47;
