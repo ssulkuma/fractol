@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:30:04 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/08 12:20:28 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:06:43 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,10 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->color = 1;
 	mlx->max_iteration = 80;
 	mlx->menu = 0;
-	mlx->min_real = -2.0;
-	mlx->max_real = 0.47;
-	mlx->min_imag = -1.12;
-	mlx->max_imag = 1.12;
-	if (mlx->fractal == 2)
-	{
-		mlx->min_real = -2.0;
-		mlx->max_real = 2.0;
-		mlx->min_imag = -1.25;
-		mlx->max_imag = 1.25;
-	}
+	reset(mlx);
 	mlx->mouse_x = -0.08;
 	mlx->mouse_y = 0.156;
 	mlx->lock = 1;
-	mlx->position_x = 0;
-	mlx->position_y = 0;
 	mlx->rainbow = 5;
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,

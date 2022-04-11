@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 13:22:21 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/04/08 12:18:53 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/04/11 11:07:06 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_FILES = main.c \
 			key_events.c \
 			mouse_events.c \
 			menu.c \
-			colors.c
+			colors.c \
+			reset.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 INCLUDES = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
